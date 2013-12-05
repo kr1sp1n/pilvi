@@ -1,0 +1,32 @@
+{
+  "name": "pilvi",
+  "version": "0.0.1",
+  "description": "P2P javascript rock'n'roll",
+  "main": "pilvi.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kr1sp1n/pilvi.git"
+  },
+  "keywords": [
+    "p2p"
+  ],
+  "author": "Krispin Schulz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kr1sp1n/pilvi/issues"
+  },
+  "dependencies": {
+    "ws": "~0.4.31",
+    "node-uuid": "~1.4.1"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.6.3",
+    "node-dev": "~2.1.4"
+  }
+}

@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>pilvi browser example</title>
+  </head>
+  <body>
+    <script src="../../libs/json2.js"></script>
+    <script src="../../libs/jstorage.min.js"></script>
+    <script src="../../pilvi.js"></script>
+    <script src="../../plugins/jstorage_plugin.js"></script>
+    <script type="text/javascript">
+
+      // define filters
+      var all = function(item){return true};
+      var isDone = function(item) {return item.status==='done'};
+
+      pilvi.setSession("6a2ca71a-9a57-444b-95e4-bba4d21b2462");
+      console.log("pilvi session: " + pilvi.getSession());
+
+      pilvi.on('post', function(collection, items){
+        // console.log(items[0].status + " : " + items[0].name);
+      });
+
+      pilvi.post('task', [
+        {"name":"clean kitchen!", "status":"todo"},
+        {"name":"get up", "status":"done"}
+      ]);
+
+      pilvi.get('task', all, function(items){
+        console.log("GET all tasks:");
+        console.log(items);
+      });
+
+      pilvi.get('task', isDone, function(items){
+        console.log("GET done tasks:");
+        console.log(items);
+      });
+
+      pilvi.delete('task', isDone, function(items){
+        console.log("DELETE done tasks:");
+        console.log(items);
+      });
+
+      pilvi.get('task', all, function(items){
+        console.log("Finally GET all tasks:");
+        console.log(items);
+      });
+
+    </script>
+  </body>
+</html>

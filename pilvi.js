@@ -15,18 +15,29 @@
   };    
   
   var session = uuid();
+  var client = uuid();
 
   // PUBLIC
   var pilvi = {}
   pilvi.VERSION = '0.0.1';
+  pilvi.CONNECTING = 0;
+  pilvi.OPEN = 1;
+  pilvi.CLOSING = 2;
+  pilvi.CLOSED = 3;
+  pilvi.readyState = pilvi.CONNECTING;
 
   pilvi.setSession = function(uuid) {
     session = uuid;
+    trigger('setSession', uuid);
   };
 
   pilvi.getSession = function() {
     return session;
-  }
+  };
+
+  pilvi.getClient = function() {
+    return client;
+  };
 
   // bind to event
   pilvi.on = function(event, fct) {

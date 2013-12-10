@@ -7,7 +7,8 @@
     "example": "examples"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "find . -name '*.js' -print0 | xargs -0 ./node_modules/.bin/jslint",
+    "start": "./node_modules/.bin/node-dev ./src/server.coffee"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "coffee-script": "~1.6.3",
-    "node-dev": "~2.1.4"
+    "node-dev": "~2.1.4",
+    "jslint": "~0.2.5"
   }
 }

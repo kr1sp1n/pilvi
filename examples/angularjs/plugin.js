@@ -73,10 +73,20 @@
       var found = false;
       for (var j = 0; j < table.length; j++) {
         if (table[j]['_id'] === item['_id']) {
-          // replace or merge?
-          // update!
-          table[j] = item;
           found = true;
+
+          // check if item is newer
+          if(table[j]['_time'] < item['_time']) {
+            // TODO replace or merge?
+            table[j] = item;
+          }
+
+          // check if item is older
+          if(table[j]['_time'] > item['_time']) {
+            // publish newer item!
+            pilvi.set(collection, [table[j]])
+          }
+          
         }
       }
 

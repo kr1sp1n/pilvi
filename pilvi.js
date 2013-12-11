@@ -64,6 +64,7 @@
       if(items[i]['_id']==null || items[i]['_id']=='undefined') {
         items[i]['_id'] = pilvi.uuid();
       }
+      items[i]['_time'] = new Date().getTime();
     }
     pilvi.trigger('set', collection, items, callback);
   };

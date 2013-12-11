@@ -1,20 +1,19 @@
 // "use strict";
 
 (function () {
-    // PRIVATE
-    var events = {},
-        session = null,
-        client = null,
-
-        trigger = function (event) {
-            if (event in events === false) { return; }
-            for (var i = 0; i < events[event].length; i++){
-                events[event][i].apply(this, Array.prototype.slice.call(arguments, 1));
-            }
-        };
+  // PRIVATE
+  var events = {},
+      session = null,
+      client = null,
+      trigger = function (event) {
+        if (event in events === false) { return; }
+        for (var i = 0; i < events[event].length; i++){
+          events[event][i].apply(this, Array.prototype.slice.call(arguments, 1));
+        }
+      },
+      pilvi = {}
 
   // PUBLIC
-  var pilvi = {}
   pilvi.VERSION = '0.0.1';
   pilvi.CONNECTING = 0;
   pilvi.OPEN = 1;
@@ -68,7 +67,21 @@
 
   pilvi.push = function(collection, items) {
     trigger('push', collection, items);
-  }
+  };
+
+  pilvi.pull = function(collection) {
+    trigger('pull', collection);
+  };
+
+  pilvi.send = function(type, message) {
+    var envelope = {
+      "from": pilvi.getClient(),
+      "session": pilvi.getSession(),
+      "type": type
+    };
+    if(message!=null) envelope.message = message;
+    trigger('send', envelope);
+  };
 
   session = pilvi.uuid();
   client = pilvi.uuid();

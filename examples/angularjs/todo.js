@@ -21,7 +21,9 @@ todoApp.service('Todo', ['$rootScope', function($rootScope){
 
   pilvi.on('push', function(collection, items){
     if(collection==='todos') {
-      service.getAll();
+      $rootScope.$apply(function(){
+        service.getAll();
+      });
     }
   });
 
@@ -60,58 +62,9 @@ var TodoCtrl = ['$scope', 'Todo', function($scope, Todo){
   };
 
   $scope.$on('todos.update', function(event){
-    console.log("UPDATE");
-    
     $scope.todos = Todo.todos;
   });
 
 }];
 
 todoApp.controller("todos.list", TodoCtrl);
-
-// function TodoCtrl($scope) {
-  
-  
-
-//   $scope.todos = [];
-
-//   $scope.$watch('todo', function(x){
-//     // console.log(x);
-//   });
-
-//   $scope.getAll = function() {
-//     pilvi.get('todos', all, function(items){
-      
-//       $scope.todos = angular.copy(items);
-//       $scope.$apply();
-//     });
-//   };
-
-//   $scope.getAll();
-
-//   pilvi.on('push', function(collection, items){
-//     if(collection==='todos') {
-//       $scope.getAll();
-//     }
-//   });
-
-//   // {text:'learn angular', done:true},
-//   // {text:'build an angular app', done:false}];
- 
-//   $scope.addTodo = function() {
-//     var item = {text:$scope.todoText, done:false};
-//     $scope.todos.push(item);
-//     pilvi.set('todos', [angular.copy(item)]);
-//     $scope.todoText = '';
-//   };
- 
-//   $scope.remaining = function() {
-//     var count = 0;
-//     angular.forEach($scope.todos, function(todo) {
-//       count += todo.done ? 0 : 1;
-//     });
-//     return count;
-//   };
- 
-
-// }

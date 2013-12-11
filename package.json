@@ -2,7 +2,7 @@
   "name": "pilvi",
   "version": "0.0.1",
   "description": "P2P javascript rock'n'roll",
-  "main": "pilvi.js",
+  "main": "./src/server.coffee",
   "directories": {
     "example": "examples"
   },
@@ -23,11 +23,11 @@
     "url": "https://github.com/kr1sp1n/pilvi/issues"
   },
   "dependencies": {
+    "coffee-script": "~1.6.3",
     "ws": "~0.4.31",
     "node-uuid": "~1.4.1"
   },
   "devDependencies": {
-    "coffee-script": "~1.6.3",
     "node-dev": "~2.1.4",
     "jslint": "~0.2.5"
   }

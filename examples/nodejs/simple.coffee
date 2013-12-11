@@ -2,15 +2,15 @@ pilvi = require './../../pilvi'
 
 console.log "pilvi v#{pilvi.VERSION}"
 
-x = (collection, items)->
-  console.log "POST!!!"
+save = (collection, items)->
+  console.log "Save items: "
   console.log items
 
-y = (collection, items)->
-  console.log "again!"
+other = (collection, items)->
+  console.log "Do something with items: "
   console.log items
 
-pilvi.on 'post', x
-pilvi.on 'post', y
+pilvi.on 'set', save
+pilvi.on 'set', other
 
-pilvi.post 'task', [{name:'test', status: 'todo'}]
+pilvi.set 'task', [{name:'test', status: 'todo'}]

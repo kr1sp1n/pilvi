@@ -12,6 +12,9 @@ todoApp.service('Todo', ['$rootScope', function($rootScope){
       $rootScope.$broadcast('todos.update');
       pilvi.set('todos', [angular.copy(item)]);
     },
+    changeTodo: function(item) {
+      pilvi.set('todos', [angular.copy(item)]);
+    },
     getAll: function() {
       pilvi.get('todos', all, function(items){
         service.todos = angular.copy(items);
@@ -20,7 +23,7 @@ todoApp.service('Todo', ['$rootScope', function($rootScope){
     }
   };
 
-  pilvi.on('push', function(collection, items){
+  pilvi.on('update', function(collection, items){
     if(collection==='todos') {
       $rootScope.$apply(function(){
         service.getAll();
@@ -52,6 +55,10 @@ var TodoCtrl = ['$scope', 'Todo', function($scope, Todo){
       count += todo.done ? 0 : 1;
     });
     return count;
+  };
+
+  $scope.change = function(item) {
+    Todo.changeTodo(item);
   };
 
   $scope.archive = function() {

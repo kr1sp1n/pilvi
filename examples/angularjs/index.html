@@ -5,7 +5,6 @@
     <script src="../../lib/json2.js"></script>
     <script src="../../lib/jstorage.min.js"></script>
     <script src="../../pilvi.js"></script>
-    <script src="../../plugins/jstorage_plugin.js"></script>
     <script src="todo.js"></script>
     <link rel="stylesheet" href="http://angularjs.org/css/bootstrap.min.css">
     <link rel="stylesheet" href="todo.css">
@@ -17,7 +16,7 @@
       [ <a href="" ng-click="archive()">archive</a> ]
       <ul class="unstyled">
         <li ng-repeat="todo in todos">
-          <input type="checkbox" ng-model="todo.done">
+          <input type="checkbox" ng-model="todo.done" ng-change="change(todo)">
           <span class="done-{{todo.done}}">{{todo.text}}</span>
         </li>
       </ul>

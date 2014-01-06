@@ -1,7 +1,6 @@
 // TRANSPORT
 (function () {
 
-  var host = 'localhost';
   var ws = false;
   var all = function(item){return true};
 
